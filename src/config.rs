@@ -97,8 +97,8 @@ impl NatCell {
                 format!("# {cell:?}\n\
                     {tcpPrefix}add rule ip nat PREROUTING tcp dport {portStart}-{portEnd} counter dnat to {dstIp}:{portStart}-{portEnd}\n\
                     {udpPrefix}add rule ip nat PREROUTING udp dport {portStart}-{portEnd} counter dnat to {dstIp}:{portStart}-{portEnd}\n\
-                    {tcpPrefix}add rule ip nat POSTROUTING ip daddr {dstIp} tcp dport {portStart}-{portEnd} counter snat to {localIP}\n\
-                    {udpPrefix}add rule ip nat POSTROUTING ip daddr {dstIp} udp dport {portStart}-{portEnd} counter snat to {localIP}\n\n\
+                    {tcpPrefix}add rule ip nat POSTROUTING ip saddr {dstIp} tcp dport {portStart}-{portEnd} counter snat to {localIP}\n\
+                    {udpPrefix}add rule ip nat POSTROUTING ip saddr {dstIp} udp dport {portStart}-{portEnd} counter snat to {localIP}\n\n\
                     ", cell = self, portStart = port_start, portEnd = port_end, dstIp = dst_ip, localIP = local_ip, tcpPrefix = protocol.tcp_prefix(), udpPrefix = protocol.udp_prefix())
             }
             NatCell::Single {
@@ -118,8 +118,8 @@ impl NatCell {
                     format!("# {cell:?}\n\
                         {tcpPrefix}add rule ip nat PREROUTING tcp dport {localPort} counter dnat to {dstIp}:{dstPort}\n\
                         {udpPrefix}add rule ip nat PREROUTING udp dport {localPort} counter dnat to {dstIp}:{dstPort}\n\
-                        {tcpPrefix}add rule ip nat POSTROUTING ip daddr {dstIp} tcp dport {dstPort} counter snat to {localIP}\n\
-                        {udpPrefix}add rule ip nat POSTROUTING ip daddr {dstIp} udp dport {dstPort} counter snat to {localIP}\n\n\
+                        {tcpPrefix}add rule ip nat POSTROUTING ip saddr {dstIp} tcp dport {dstPort} counter snat to {localIP}\n\
+                        {udpPrefix}add rule ip nat POSTROUTING ip saddr {dstIp} udp dport {dstPort} counter snat to {localIP}\n\n\
                         ", cell = self, localPort = src_port, dstPort = dst_port, dstIp = dst_ip, localIP = local_ip, tcpPrefix = protocol.tcp_prefix(), udpPrefix = protocol.udp_prefix())
                 }
             }
