@@ -173,11 +173,3 @@ cat /opt/nat/nat.log
 ```shell
 journalctl -exfu nat
 ```
-
-## 联系
-
-[Telegram](https://t.me/popstary)
-
-## 赏个鸡腿吧
-
-<img src="/wechat_shoukuan.jpg" alt="" width="400px" style="max-width: 100%;">
