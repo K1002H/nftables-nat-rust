@@ -25,12 +25,12 @@ add chain nat POSTROUTING { type nat hook postrouting priority 100 ; }\n\n'''
 
 nf_format = {
     "RANGE": {
-        "tcp": "add rule ip nat PREROUTING tcp dport {port1}-{port2} counter dnat to {remoteIP}:{port1}-{port2}\nadd rule ip nat POSTROUTING ip daddr {remoteIP} tcp dport {port1}-{port2} counter snat to {localIP}\n",
-        "udp": "add rule ip nat PREROUTING udp dport {port1}-{port2} counter dnat to {remoteIP}:{port1}-{port2}\nadd rule ip nat POSTROUTING ip daddr {remoteIP} udp dport {port1}-{port2} counter snat to {localIP}\n"
+        "tcp": "add rule ip nat PREROUTING tcp dport {port1}-{port2} counter dnat to {remoteIP}:{port1}-{port2}\nadd rule ip nat POSTROUTING ip saddr {remoteIP} tcp dport {port1}-{port2} counter snat to {localIP}\n",
+        "udp": "add rule ip nat PREROUTING udp dport {port1}-{port2} counter dnat to {remoteIP}:{port1}-{port2}\nadd rule ip nat POSTROUTING ip saddr {remoteIP} udp dport {port1}-{port2} counter snat to {localIP}\n"
     },
     "SINGLE": {
-        "tcp": "add rule ip nat PREROUTING tcp dport {port1} counter dnat to {remoteIP}:{port2}\nadd rule ip nat POSTROUTING ip daddr {remoteIP} tcp dport {port2} counter snat to {localIP}\n",
-        "udp": "add rule ip nat PREROUTING udp dport {port1} counter dnat to {remoteIP}:{port2}\nadd rule ip nat POSTROUTING ip daddr {remoteIP} udp dport {port2} counter snat to {localIP}\n"
+        "tcp": "add rule ip nat PREROUTING tcp dport {port1} counter dnat to {remoteIP}:{port2}\nadd rule ip nat POSTROUTING ip saddr {remoteIP} tcp dport {port2} counter snat to {localIP}\n",
+        "udp": "add rule ip nat PREROUTING udp dport {port1} counter dnat to {remoteIP}:{port2}\nadd rule ip nat POSTROUTING ip saddr {remoteIP} udp dport {port2} counter snat to {localIP}\n"
     }
 }
 
